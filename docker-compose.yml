@@ -1,0 +1,52 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: yia-app
+    ports:
+      - '3000:3000'
+    environment:
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - MONGODB_URI=mongodb://atlas_assist:JourneyKey127@mongodb:27017/your_inner_atlas?authSource=admin
+      - PORT=3000
+    volumes:
+      - .:/app
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - yia-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  mongodb:
+    image: mongo:latest
+    container_name: yia-mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=atlas_assist
+      - MONGO_INITDB_ROOT_PASSWORD=JourneyKey127
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - yia-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  mongodb-data:
+    name: mongodb-data
+networks:
+  yia-network:
+    driver: bridge
