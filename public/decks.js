@@ -587,8 +587,8 @@ function trackEvent(eventName) {
   const resetAudio = new Audio('/audio/reset.mp3');
 
   // Check if deck is unlocked (persistent across refreshes)
-  let deckUsed = localStorage.getItem('deckUnlocked') !== 'true';
-  console.log('Initial deckUnlocked state:', localStorage.getItem('deckUnlocked'), 'deckUsed:', deckUsed);
+  let deckUnlocked = localStorage.getItem('deckUnlocked') === 'true';
+  console.log('Initial deckUnlocked state:', deckUnlocked);
 
   function showEmailModal() {
     try {
@@ -612,10 +612,6 @@ function trackEvent(eventName) {
 
       const form = modal.querySelector('#email-form');
       const googleBtn = modal.querySelector('#google-signin-btn');
-
-      function trackEvent(eventName) {
-        console.log(`Analytics event: ${eventName}`);
-      }
 
       function showCustomAlert(message, callback) {
         const alertModal = document.createElement('div');
@@ -664,20 +660,21 @@ function trackEvent(eventName) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email })
           });
-          console.log('Email submission response:', response.status, response.statusText);
+          console.log('Email submission response:', response.status);
           if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}, StatusText: ${response.statusText}`);
+            const errorData = await response.json();
+            throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorData.message || response.statusText}`);
           }
           const data = await response.json();
           console.log('Email submission result:', data);
           if (data.success) {
             localStorage.setItem('deckUnlocked', 'true');
-            deckUsed = false;
-            console.log('After email submission, deckUnlocked:', localStorage.getItem('deckUnlocked'), 'deckUsed:', deckUsed);
+            localStorage.setItem('userEmail', email);
+            deckUnlocked = true;
+            console.log('After email submission, deckUnlocked:', deckUnlocked);
             modal.remove();
             document.body.classList.remove('modal-open');
             await window.renderDeck();
-            console.log('Deck unlocked after email submission');
             showCustomAlert('The stars align! Your Atlas awaits.');
           } else {
             console.error('Email submission failed:', data.message);
@@ -696,9 +693,9 @@ function trackEvent(eventName) {
       });
 
       let retryCount = 0;
-      const maxRetries = 10; // Reduced retries for faster feedback
-      const retryTimeout = 200; // Faster retries
-      const maxRetryDuration = 10000; // Reduced to 10s
+      const maxRetries = 10;
+      const retryTimeout = 200;
+      const maxRetryDuration = 10000;
       const startTime = Date.now();
 
       function initializeGoogleSignIn() {
@@ -752,20 +749,21 @@ function trackEvent(eventName) {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ id_token: response.credential })
                   });
-                  console.log('Google Sign-In API response:', apiResponse.status, apiResponse.statusText);
+                  console.log('Google Sign-In API response:', apiResponse.status);
                   if (!apiResponse.ok) {
-                    throw new Error(`HTTP error! Status: ${apiResponse.status}, StatusText: ${apiResponse.statusText}`);
+                    const errorData = await apiResponse.json();
+                    throw new Error(`HTTP error! Status: ${apiResponse.status}, Message: ${errorData.message || apiResponse.statusText}`);
                   }
                   const data = await apiResponse.json();
                   console.log('Google Sign-In result:', data);
                   if (data.success) {
                     localStorage.setItem('deckUnlocked', 'true');
-                    deckUsed = false;
-                    console.log('After Google Sign-In, deckUnlocked:', localStorage.getItem('deckUnlocked'), 'deckUsed:', deckUsed);
+                    localStorage.setItem('userEmail', userEmail);
+                    deckUnlocked = true;
+                    console.log('After Google Sign-In, deckUnlocked:', deckUnlocked);
                     modal.remove();
                     document.body.classList.remove('modal-open');
                     await window.renderDeck();
-                    console.log('Deck unlocked after Google Sign-In');
                     showCustomAlert('The cosmos welcomes you back! Your Atlas awaits.');
                   } else {
                     console.error('API error:', data.message);
@@ -968,9 +966,9 @@ function trackEvent(eventName) {
     window.app.setState({ isAnimating: true });
 
     console.log('Deck shuffle triggered');
-    console.log('Checking deckUnlocked:', localStorage.getItem('deckUnlocked'));
+    console.log('Checking deckUnlocked:', deckUnlocked);
 
-    if (localStorage.getItem('deckUnlocked') !== 'true') {
+    if (!deckUnlocked) {
       console.log('Deck is locked, showing email modal');
       showEmailModal();
       window.app.setState({ isAnimating: false });
@@ -1070,12 +1068,28 @@ function trackEvent(eventName) {
   };
 
   // Initialize
-  function initializeDecks() {
+  async function initializeDecks() {
     const deckArea = document.getElementById('deck-area');
     if (!deckArea) return;
 
+    // Check server-side deck unlock status
+    const userEmail = localStorage.getItem('userEmail');
+    if (userEmail && !deckUnlocked) {
+      try {
+        const response = await fetch(`/api/check-deck-status?email=${encodeURIComponent(userEmail)}`);
+        const result = await response.json();
+        if (result.success && result.deckUnlocked) {
+          deckUnlocked = true;
+          localStorage.setItem('deckUnlocked', 'true');
+        }
+      } catch (error) {
+        console.error('Error checking deck status:', error);
+      }
+    }
+    console.log('After initialization, deckUnlocked:', deckUnlocked);
+
     // Initial render with back image at rest
-    window.renderDeck();
+    await window.renderDeck();
   }
 
   // Run on DOM ready
