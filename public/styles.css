@@ -461,7 +461,7 @@ h1 {
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 0 10px rgba(255, 0, 255, 0.1);
     padding: 5px 10px 10px 10px;
     max-height: 250px;
-    max-width: 1100px;
+    max-width: 800px;
     margin: 0 auto;
     text-align: center;
 }
@@ -836,7 +836,7 @@ footer {
     outline-offset: 2px;
 }
 
-/* Responsive Adjustments for Deck Spread, Carousel, and Modal */
+/* Responsive Adjustments for Mobile */
 @media (max-width: 900px) {
     .deck-spread-container {
         flex-direction: column;
@@ -850,28 +850,85 @@ footer {
         text-align: center;
         max-width: 80%;
     }
+    .deck-spread-content h2 {
+        font-size: 1.8em;
+    }
     .deck-spread-content .cta-button {
         align-self: center;
+        max-width: 250px;
+        padding: 12px 25px;
+        font-size: 0.9em;
     }
     .features-container {
         max-height: 350px;
+        max-width: 90%;
+        padding: 10px;
     }
     .feature-group {
         flex-direction: column;
     }
+    .feature-item h3 {
+        font-size: 1.2em;
+    }
+    .feature-item p {
+        font-size: 0.85em;
+    }
 }
 
 @media (max-width: 600px) {
+    body {
+        background-size: cover; /* Better scaling for mobile portrait */
+    }
+
+    /* Use landscape.png for landscape mode on mobile */
+    @media (orientation: landscape) {
+        body {
+            background-image: url('/images/landscape.png');
+            background-size: cover;
+        }
+    }
+
+    h1 {
+        font-size: 2.5em; /* Scaled down for mobile */
+        margin: 10px 0 30px;
+    }
+
+    .subtitle {
+        font-size: 1.2em;
+        margin-top: 50px;
+        margin-bottom: 10px;
+    }
+
+    #deck-area {
+        max-width: 90%;
+        min-height: 200px;
+        margin: 10px auto;
+    }
+
+    .deck-card {
+        width: 70vw; /* Responsive width */
+        height: 105vw; /* Maintain aspect ratio (450/300 = 1.5) */
+        max-width: 280px;
+        max-height: 420px;
+    }
+
+    .deck-image {
+        border-radius: 6px;
+    }
+
     .email-modal .modal-content {
         padding: 20px;
         max-width: 320px;
     }
+
     .email-modal h2 {
         font-size: 1.6em;
     }
+
     .email-modal p {
         font-size: 0.9em;
     }
+
     .email-modal .gsi-material-button,
     .email-modal input[type="email"],
     .email-modal button[type="submit"],
@@ -881,29 +938,97 @@ footer {
         padding: 10px 0;
         font-size: 0.9em;
     }
+
     .email-modal .gsi-material-button {
         height: 40px;
         font-size: 14px;
         line-height: 40px;
     }
+
     .email-modal .gsi-material-button.disabled {
         height: 40px;
         font-size: 14px;
         line-height: 40px;
     }
+
     .email-modal .gsi-material-button-icon {
         width: 18px;
         height: 18px;
     }
+
     .deck-spread-image {
         max-width: 90%;
     }
+
+    .deck-spread-content h2 {
+        font-size: 1.6em;
+    }
+
+    .deck-spread-content p {
+        font-size: 0.9em;
+    }
+
+    #carousel-title {
+        font-size: 1.6em;
+        margin-bottom: 15px;
+    }
+
     .carousel-btn {
         font-size: 1.2em;
-        padding: 8px 12px;
+        padding: 6px 10px;
     }
+
+    .features-container {
+        max-height: 400px;
+        max-width: 95%;
+        padding: 8px;
+    }
+
+    .feature-group p {
+        font-size: 0.9em;
+    }
+
+    .feature-item h3 {
+        font-size: 1.1em;
+    }
+
+    .feature-item p {
+        font-size: 0.8em;
+    }
+
     .footer-content {
         flex-direction: column;
         gap: 8px;
+    }
+
+    footer {
+        font-size: 0.8em;
+        padding: 15px;
+    }
+
+    .cta-button {
+        max-width: 200px;
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .brand-button {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+
+    .custom-alert {
+        max-width: 300px;
+        padding: 20px;
+    }
+
+    .custom-alert p {
+        font-size: 1em;
+    }
+
+    .custom-alert button.confirm-alert,
+    .custom-alert button.cancel-alert {
+        font-size: 0.9em;
+        padding: 8px 16px;
     }
 }

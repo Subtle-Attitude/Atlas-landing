@@ -659,7 +659,7 @@ function trackEvent(eventName) {
         trackEvent('atlas_email_manual_entry');
         try {
           console.log('Submitting email:', email);
-          const response = await fetch('http://localhost:3000/api/unlock-deck', {
+          const response = await fetch('/api/unlock-deck', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email })
@@ -747,7 +747,7 @@ function trackEvent(eventName) {
                     throw new Error('No email in Google Sign-In payload');
                   }
                   trackEvent('atlas_google_signin');
-                  const apiResponse = await fetch('http://localhost:3000/api/unlock-deck', {
+                  const apiResponse = await fetch('/api/unlock-deck', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ id_token: response.credential })

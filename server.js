@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const jwt = require('jsonwebtoken');
 const path = require('path');
 require('dotenv').config();
 
@@ -17,7 +16,10 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files from 'public'
 
 // MongoDB connection
-const mongoUri = process.env.MONGODB_URI || 'mongodb://atlas_assist:JourneyKey127@mongodb:27017/your_inner_atlas?authSource=admin';
+const mongoUri = process.env.MONGODB_URI;
+if (!mongoUri) {
+  throw new Error('MONGODB_URI is not defined in environment variables');
+}
 console.log('Attempting MongoDB connection with URI:', mongoUri.replace(/:([^:@]*)@/, ':****@'));
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
@@ -32,7 +34,6 @@ const userSchema = new mongoose.Schema({
 });
 const User = mongoose.model('User', userSchema);
 
-// Unlock deck endpoint
 app.post('/api/unlock-deck', async (req, res) => {
   console.log('Received /api/unlock-deck request:', req.body);
   console.log('CORS request from origin:', req.get('origin'));
@@ -40,12 +41,17 @@ app.post('/api/unlock-deck', async (req, res) => {
     let email, name;
     if (req.body.id_token) {
       console.log('Processing Google Sign-In with id_token:', req.body.id_token.substring(0, 10) + '...');
-      const ticket = await require('google-auth-library').OAuth2Client({
-        clientId: process.env.GOOGLE_CLIENT_ID
-      }).verifyIdToken({
-        idToken: req.body.id_token,
-        audience: process.env.GOOGLE_CLIENT_ID
-      });
+      const { OAuth2Client } = require('google-auth-library');
+      const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+      let ticket;
+      try {
+        ticket = await client.verifyIdToken({
+          idToken: req.body.id_token,
+          audience: process.env.GOOGLE_CLIENT_ID
+        });
+      } catch (error) {
+        throw new Error(`Token verification failed: ${error.message}`);
+      }
       const payload = ticket.getPayload();
       console.log('Google Sign-In payload:', payload);
       email = payload.email;
@@ -71,7 +77,7 @@ app.post('/api/unlock-deck', async (req, res) => {
     res.json({ success: true });
   } catch (error) {
     console.error('Error processing /api/unlock-deck:', error.message, error.stack);
-    res.status(400).json({ success: false, message: error.message });
+    res.status(400).json({ success: false, message: error.message, details: error.stack });
   }
 });
 
