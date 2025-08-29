@@ -21,7 +21,13 @@ if (!mongoUri) {
   throw new Error('MONGODB_URI is not defined in environment variables');
 }
 console.log('Attempting MongoDB connection with URI:', mongoUri.replace(/:([^:@]*)@/, ':****@'));
-mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000, // 30 seconds
+  connectTimeoutMS: 30000, // 30 seconds
+  socketTimeoutMS: 45000 // 45 seconds
+})
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 console.log('MongoDB initialized successfully');
