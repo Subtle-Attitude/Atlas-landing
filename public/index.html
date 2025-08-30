@@ -2,11 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="google-signin-client_id" content="547040499431-ja17jb9unqoiaq9fno0p719vokb5oqd9.apps.googleusercontent.com">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://accounts.google.com https://www.googleapis.com https://www.gstatic.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com https://accounts.google.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' https://*.google.com https://*.googleusercontent.com https://*.gstatic.com data:; connect-src 'self' http://localhost:3000 https://yourinneratlas.co https://*.onrender.com https://accounts.google.com https://www.googleapis.com; frame-src https://accounts.google.com; worker-src 'self' blob:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://accounts.google.com https://www.googleapis.com https://www.gstatic.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com https://accounts.google.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' https://*.google.com https://*.googleusercontent.com https://*.gstatic.com data:; connect-src 'self' http://localhost:3000 https://yourinneratlas.co https://*.onrender.com https://accounts.google.com https://www.googleapis.com https://subtleattitude.co; frame-src https://accounts.google.com; worker-src 'self' blob:;">
+    <meta name="description" content="Your Inner Atlas is an immersive journaling app for creative self-discovery, offering AI-powered affirmations, mood tracking, and a celestial interface.">
+    <meta name="keywords" content="journaling, self-discovery, mental health, affirmations, mood tracking, dream interpretation">
+    <meta name="author" content="Subtle Attitude LLC">
+    <meta name="robots" content="index, follow">
     <title>Your Inner Atlas - A Celestial Companion for Creative Self-Discovery</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="decks.js" defer></script>
@@ -18,97 +23,99 @@
         <h1>✧ Your Inner Atlas ✧</h1>
         <p class="subtitle">A Celestial Companion for Creative Self-Discovery</p>
     </header>
-    <div class="deck-section">
-        <div class="deck-container">
-            <div class="deck-row">
-                <div id="deck-area" aria-label="Deck Area"></div>
-            </div>
-        </div>
-        <a href="#features" class="cta-button">Explore the Cosmos Within</a>
-        <div class="deck-buttons">
-            <button id="shuffle-btn" class="control-btn shuffle-btn" aria-label="Shuffle Your Atlas" type="button" style="display:none;">Shuffle Your Atlas</button>
-            <button id="flip-btn" class="control-btn flip-btn" aria-label="Flip Card" type="button" style="display:none;">Flip</button>
-            <button id="reset-btn" class="control-btn reset-btn" aria-label="Reset Deck" type="button" style="display:none;">Reset</button>
-        </div>
-        <!-- Deck Spread Section with Image and Text Column -->
-        <section id="deck-spread">
-            <div class="deck-spread-container">
-                <img src="/images/three-deck-spread.png" alt="Three Deck Spread" class="deck-spread-image">
-                <div class="deck-spread-content">
-                    <h2>Join the Journey</h2>
-                    <p class="sparkle">Ready to map your inner atlas? Access all 3 decks Here</p>
-                    <a href="https://atlasjournalcompanion.app" class="cta-button">Get Started</a>
+    <main>
+        <div class="deck-section">
+            <div class="deck-container">
+                <div class="deck-row">
+                    <div id="deck-area" aria-label="Interactive card deck for self-discovery"></div>
                 </div>
+            </div>
+            <a href="#carousel" class="cta-button">Explore the Cosmos Within</a>
+            <div class="deck-buttons">
+                <button id="shuffle-btn" class="control-btn shuffle-btn" aria-label="Shuffle Your Atlas" type="button" style="display:none;">Shuffle Your Atlas</button>
+                <button id="flip-btn" class="control-btn flip-btn" aria-label="Flip Card" type="button" style="display:none;">Flip</button>
+                <button id="reset-btn" class="control-btn reset-btn" aria-label="Reset Deck" type="button" style="display:none;">Reset</button>
+            </div>
+            <!-- Deck Spread Section with Image and Text Column -->
+            <section id="deck-spread">
+                <div class="deck-spread-container">
+                    <img src="/images/three-deck-spread.png" alt="Three Deck Spread for Your Inner Atlas" class="deck-spread-image" onerror="this.src='/images/fallback-card.png';">
+                    <div class="deck-spread-content">
+                        <h2>Join the Journey</h2>
+                        <p class="sparkle">Ready to map your inner atlas? Access all 3 decks here</p>
+                        <a href="https://atlasjournalcompanion.app" class="cta-button">Get Started</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- Carousel Section for Features -->
+        <section id="carousel">
+            <h2 id="carousel-title">Discover Your Inner Universe</h2>
+            <div class="carousel-container">
+                <button class="carousel-btn carousel-btn-left" aria-label="Previous Slide">&#10094;</button>
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <div class="features-container">
+                            <div class="feature-group">
+                                <p>Your Inner Atlas is an immersive, interactive journaling app designed to help you explore your inner world with intention, creativity, and curiosity. Guided by a celestial aesthetic and rooted in psychological depth, it offers a sacred space for personal reflection, visioning, and dream exploration—all within a beautifully designed cosmic interface.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="features-container">
+                            <div class="feature-group">
+                                <div class="feature-item">
+                                    <h3>Broaden Your Self-Discovery</h3>
+                                    <p>Explore AI-powered positive affirmations, vision boarding, and dream interpretation, guiding you toward new cosmic insights and other Your Inner Atlas creative self-discovery features.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="features-container">
+                            <div class="feature-group">
+                                <div class="feature-item">
+                                    <h3>Speech Transcription & Audio Waves</h3>
+                                    <p>Capture your thoughts effortlessly with voice-to-text and visualize your audio as flowing waves in the stars.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <h3>Mood, Fulfillment & Lucidity Tracking</h3>
+                                    <p>Track your emotional journey with intuitive tools that map your progress across the cosmos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="features-container">
+                            <div class="feature-group">
+                                <div class="feature-item">
+                                    <h3>Thoughtful Logging & Data Universe</h3>
+                                    <p>A robust system for journaling, with charts that transform your data into a unique constellation of stars.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="features-container">
+                            <div class="feature-group">
+                                <div class="feature-item">
+                                    <h3>Mental Health Support</h3>
+                                    <p>With a passion for mental health and suicide awareness, upon login set a loved one’s contact information and if your light begins to dim too low, we’ll send them a discreet hangout invite. Because together, we brighten life.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <h3>Celestial Clarity for Every Vision</h3>
+                                    <p>With assisted reader support, Your Inner Atlas offers an accessible path for users of all visual abilities to journey inward and discover their inner universe.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn-right" aria-label="Next Slide">&#10095;</button>
             </div>
         </section>
-    </div>
-    <!-- Carousel Section for Features -->
-    <section id="carousel">
-        <h2 id="carousel-title">Discover Your Inner Universe</h2>
-        <div class="carousel-container">
-            <button class="carousel-btn carousel-btn-left" aria-label="Previous Slide">&#10094;</button>
-            <div class="carousel-track">
-                <div class="carousel-slide">
-                    <div class="features-container">
-                        <div class="feature-group">
-                            <p>Your Inner Atlas is an immersive, interactive journaling app designed to help you explore your inner world with intention, creativity, and curiosity. Guided by a celestial aesthetic and rooted in psychological depth, it offers a sacred space for personal reflection, visioning, and dream exploration—all within a beautifully designed cosmic interface.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="features-container">
-                        <div class="feature-group">
-                            <div class="feature-item">
-                                <h3>Broaden Your Self-Discovery</h3>
-                                <p>Explore AI-powered positive affirmations, vision boarding, and dream interpretation, guiding you toward new cosmic insights and other Your Inner Atlas creative self-discovery features.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="features-container">
-                        <div class="feature-group">
-                            <div class="feature-item">
-                                <h3>Speech Transcription & Audio Waves</h3>
-                                <p>Capture your thoughts effortlessly with voice-to-text and visualize your audio as flowing waves in the stars.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h3>Mood, Fulfillment & Lucidity Tracking</h3>
-                                <p>Track your emotional journey with intuitive tools that map your progress across the cosmos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="features-container">
-                        <div class="feature-group">
-                            <div class="feature-item">
-                                <h3>Thoughtful Logging & Data Universe</h3>
-                                <p>A robust system for journaling, with charts that transform your data into a unique constellation of stars.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="features-container">
-                        <div class="feature-group">
-                            <div class="feature-item">
-                                <h3>Mental Health Support</h3>
-                                <p>With a passion for mental health and suicide awareness, upon login set a loved one's contact information and if your light begins to dim too low, we'll shoot them a discrete hangout invite. Because, together we brighten life.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h3>Celestial Clarity for Every Vision</h3>
-                                <p>With assisted reader support, Your Inner Atlas offers an accessible path for users of all visual abilities to journey inward and discover their inner universe.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-btn carousel-btn-right" aria-label="Next Slide">&#10095;</button>
-        </div>
-    </section>
+    </main>
     <footer>
-        <p>&copy; 2025 Subtle Attitude LLC. All rights reserved. | <a href="/privacy" style="color: #ffffff; text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);">Privacy Policy</a> | <a href="/contact" style="color: #ffffff; text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);">Contact Us</a></p>
+        <p>&copy; 2025 Subtle Attitude LLC. All rights reserved. | <a href="/privacy" style="color: #ffffff; text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);">Privacy Policy</a> | <a href="/contact" style="color: #ffffff; text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);">Contact Us</a> | <a href="tel:988" style="color: #ffffff; text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);">Suicide & Crisis Lifeline: 988</a></p>
     </footer>
 </body>
 </html>
