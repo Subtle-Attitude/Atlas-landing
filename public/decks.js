@@ -139,7 +139,7 @@ function trackEvent(eventName) {
     }
   };
 
-  // Inject Google Identity Services stylesheet (updated to use forced-colors)
+  // Inject Google Identity Services and custom button styles
   const head = document.head;
   const css = `
     .qJTHM {
@@ -540,6 +540,95 @@ function trackEvent(eventName) {
       border: none;
       outline: none
     }
+    .deck-container {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      user-select: none;
+      outline: none;
+    }
+    .deck-card {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      user-select: none;
+      outline: none;
+    }
+    .cosmic-btn {
+      background: linear-gradient(45deg, #1a1a40, #2b2b66);
+      color: #fff;
+      font-family: "Google Sans", arial, sans-serif;
+      font-size: 16px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    .cosmic-btn:hover {
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+      transform: scale(1.05);
+    }
+    .cosmic-btn:active {
+      transform: scale(0.95);
+    }
+    .info-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .info-btn img {
+      width: 40px;
+      height: 40px;
+    }
+    .info-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .info-modal-content {
+      background: linear-gradient(45deg, #1a1a40, #2b2b66);
+      color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 90%;
+      max-height: 80%;
+      overflow-y: auto;
+      text-align: center;
+      font-family: "Google Sans", arial, sans-serif;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    .info-modal-content p {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .info-modal-content a {
+      color: #1a73e8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .info-modal-content a:hover {
+      text-decoration: underline;
+    }
+    .info-modal-content .close-btn {
+      background: #fff;
+      color: #1a1a40;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
     sentinel {}
   `;
   const styleId = 'googleidentityservice_button_styles';
@@ -878,6 +967,33 @@ function trackEvent(eventName) {
     }
   }
 
+  function showInfoModal() {
+    const modal = document.createElement('div');
+    modal.className = 'info-modal';
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+    modal.innerHTML = `
+      <div class="info-modal-content">
+        <p>You are not lost, searching for the stars—<br>
+        you are made of them.<br>
+        Held by the gravity of your truth,<br>
+        guided by the light within,<br>
+        may you find rest in your own rhythm.<br>
+        You are not a stranger here—<br>
+        you are the echo of galaxies,<br>
+        the keeper of your own light.</p>
+        <p>If you need support, reach out to the <a href="tel:988" target="_blank">Suicide & Crisis Lifeline at 988</a>.</p>
+        <button class="close-btn" aria-label="Close info modal">Close</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    const closeBtn = modal.querySelector('.close-btn');
+    closeBtn.addEventListener('click', () => {
+      modal.remove();
+      document.body.classList.remove('modal-open');
+    });
+  }
+
   // Render deck function
   window.renderDeck = async function () {
     const deckArea = document.getElementById('deck-area');
@@ -906,6 +1022,22 @@ function trackEvent(eventName) {
         </div>
       </div>
     `;
+
+    // Add Subtle Attitude button
+    const subtleBtn = document.createElement('button');
+    subtleBtn.className = 'cosmic-btn';
+    subtleBtn.textContent = 'Explore Subtle Attitude';
+    subtleBtn.addEventListener('click', () => {
+      window.location.href = 'https://subtleattitude.co';
+    });
+    deckArea.appendChild(subtleBtn);
+
+    // Add Artist Signature button
+    const artistBtn = document.createElement('button');
+    artistBtn.className = 'info-btn';
+    artistBtn.innerHTML = '<img src="/images/artist-signature.png" alt="Artist Memo" />';
+    artistBtn.addEventListener('click', showInfoModal);
+    document.body.appendChild(artistBtn);
 
     const deckCard = deckArea.querySelector('.deck-card');
     if (deckCard) {
