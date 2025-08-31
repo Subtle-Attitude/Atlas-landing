@@ -1023,14 +1023,12 @@ function trackEvent(eventName) {
       </div>
     `;
 
-    // Add Subtle Attitude button
-    const subtleBtn = document.createElement('button');
-    subtleBtn.className = 'cosmic-btn';
+    // Add Subtle Attitude button above footer
+    const subtleBtn = document.createElement('a');
+    subtleBtn.className = 'cta-button subtle-btn';
+    subtleBtn.href = 'https://subtleattitude.co';
     subtleBtn.textContent = 'Explore Subtle Attitude';
-    subtleBtn.addEventListener('click', () => {
-      window.location.href = 'https://subtleattitude.co';
-    });
-    deckArea.appendChild(subtleBtn);
+    document.body.insertBefore(subtleBtn, document.querySelector('footer'));
 
     // Add Artist Signature button
     const artistBtn = document.createElement('button');
