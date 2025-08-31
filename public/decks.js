@@ -1035,7 +1035,7 @@ function trackEvent(eventName) {
     // Add Artist Signature button
     const artistBtn = document.createElement('button');
     artistBtn.className = 'info-btn';
-    artistBtn.innerHTML = '<img src="/images/artist-signature.png" alt="Artist Memo" />';
+    artistBtn.innerHTML = '<img src="/images/artist-signature-button.png" alt="Artist Memo" />';
     artistBtn.addEventListener('click', showInfoModal);
     document.body.appendChild(artistBtn);
 
