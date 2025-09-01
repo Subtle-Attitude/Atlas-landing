@@ -1038,13 +1038,6 @@ function trackEvent(eventName) {
       </div>
     `;
 
-    // Add Subtle Attitude button above footer
-    const subtleBtn = document.createElement('a');
-    subtleBtn.className = 'cta-button subtle-btn';
-    subtleBtn.href = 'https://subtleattitude.co';
-    subtleBtn.textContent = 'Explore Subtle Attitude';
-    document.body.insertBefore(subtleBtn, document.querySelector('footer'));
-
     // Add Artist Signature button
     const artistBtn = document.createElement('button');
     artistBtn.className = 'info-btn';
