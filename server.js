@@ -8,7 +8,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://yourinneratlas.co', 'https://atlas-landing.onrender.com'],
+  origin: ['http://localhost:3000', 'https://atlasjournalcompanion.com', 'https://atlas-landing.onrender.com'],
   methods: ['GET', 'POST'],
   credentials: true
 }));

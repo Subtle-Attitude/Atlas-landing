@@ -15,7 +15,7 @@
   ],
   "author": "Your Name",
   "license": "ISC",
-  "description": "Landing page for Your Inner Atlas, a celestial companion for creative self-discovery",
+  "description": "Landing page for Your Atlas Journal Companion, a celestial addition for creative self-discovery",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

@@ -49,7 +49,6 @@ body.modal-open {
     .email-modal button[type="submit"],
     .gsi-material-button,
     .brand-button,
-    .carousel-btn,
     .custom-alert button,
     .retry-google-btn,
     .cosmic-btn,
@@ -67,7 +66,6 @@ body.modal-open {
     .email-modal button[type="submit"]:focus,
     .gsi-material-button:focus,
     .brand-button:focus,
-    .carousel-btn:focus,
     .custom-alert button:focus,
     .deck-container:focus,
     .email-modal input[type="email"]:focus,
@@ -88,7 +86,7 @@ body.modal-open {
     h1, h2, .subtitle, h3 {
         text-shadow: none !important;
     }
-    .features-container, .email-modal .modal-content, .info-modal-content {
+    .email-modal .modal-content, .info-modal-content {
         border: 1px solid CanvasText !important;
         background: Canvas !important;
     }
@@ -404,128 +402,6 @@ h1 {
 
 .deck-spread-content .cta-button {
     align-self: center;
-}
-
-/* Carousel Styles */
-#carousel {
-    padding: 20px 10px;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: culturrelative;
-    z-index: 1;
-}
-
-.carousel-container {
-    position: relative;
-    overflow: hidden;
-    max-width: 100%;
-}
-
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel-slide {
-    flex: 0 0 100%;
-    padding: 0 10px;
-    box-sizing: border-box;
-}
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    border: 2px solid rgba(0, 255, 255, 0.8);
-    color: #ffffff;
-    font-size: 1.5em;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 50%;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-    transition: all 0.3s ease;
-    z-index: 2;
-}
-
-.carousel-btn:hover,
-.carousel-btn:focus {
-    background: linear-gradient(45deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
-    outline: 2px solid #00f6ff;
-    outline-offset: 2px;
-}
-
-.carousel-btn-left {
-    left: 5px;
-}
-
-.carousel-btn-right {
-    right: 5px;
-}
-
-#carousel-title {
-    text-align: center;
-    font-size: 2em;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 20px;
-    color: #ffffff;
-    text-shadow: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 25px rgba(255, 0, 255, 0.4);
-    z-index: 1;
-    box-sizing: border-box;
-    max-width: 100%;
-    overflow-wrap: break-word;
-    word-break: break-word;
-}
-
-.features-container {
-    background: rgb(0, 0, 0);
-    border-radius: 10px;
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 0 10px rgba(255, 0, 255, 0.1);
-    padding: 5px 10px 10px 10px;
-    max-height: 250px;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.features-container:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5), inset 0 0 15px rgba(255, 0, 255, 0.3);
-}
-
-.feature-group {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 10px;
-}
-
-.feature-item {
-    flex: 1 1 260px;
-    max-width: 300px;
-    margin: 5px;
-    padding: 5px;
-}
-
-.feature-group p {
-    font-size: 1em;
-    margin: 0;
-    max-width: 600px;
-}
-
-.feature-item h3 {
-    font-size: 1.4em;
-    margin-bottom: 5px;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
-}
-
-.feature-item p {
-    font-size: 0.9em;
-    margin: 0;
 }
 
 footer {
@@ -1001,7 +877,6 @@ footer {
     outline-offset: 2px;
 }
 
-/* Responsive Adjustments for Mobile */
 @media (max-width: 900px) {
     .deck-spread-container {
         flex-direction: column;
@@ -1023,21 +898,6 @@ footer {
         max-width: 250px;
         padding: 12px 25px;
         font-size: 0.9em;
-    }
-    .features-container {
-        max-height: 350px;
-        max-width: 90%;
-        padding: 10px;
-    }
-    .feature-group {
-        flex-direction: column;
-        gap: 5px;
-    }
-    .feature-item h3 {
-        font-size: 1.2em;
-    }
-    .feature-item p {
-        font-size: 0.85em;
     }
 }
 
@@ -1138,31 +998,6 @@ footer {
     .deck-spread-content p {
         font-size: 0.9em;
     }
-    #carousel-title {
-        font-size: 1.6em;
-        margin-bottom: 15px;
-    }
-    .carousel-btn {
-        font-size: 1.2em;
-        padding: 6px 10px;
-    }
-    .features-container {
-        max-height: 400px;
-        max-width: 95%;
-        padding: 8px;
-    }
-    .feature-group {
-        gap: 2px;
-    }
-    .feature-group p {
-        font-size: 0.9em;
-    }
-    .feature-item h3 {
-        font-size: 1.1em;
-    }
-    .feature-item p {
-        font-size: 0.8em;
-    }
     .footer-content {
         flex-direction: column;
         gap: 8px;
@@ -1225,4 +1060,73 @@ footer {
     box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 35px rgba(255, 0, 255, 0.5);
     outline: 2px solid #00f6ff;
     outline-offset: 2px;
+}
+/* Video Features Section */
+#video-features {
+    padding: 20px 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.video-container {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 0 10px rgba(255, 0, 255, 0.1);
+}
+
+.video-container:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5), inset 0 0 15px rgba(255, 0, 255, 0.3);
+}
+
+.feature-video {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#video-title {
+    text-align: center;
+    font-size: 2em;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 25px rgba(255, 0, 255, 0.4);
+    z-index: 1;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Responsive Adjustments for Video */
+@media (max-width: 900px) {
+    .video-container {
+        max-height: 350px;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    #video-title {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 600px) {
+    .video-container {
+        max-height: 300px;
+        max-width: 95%;
+    }
+    #video-title {
+        font-size: 1.6em;
+        margin-bottom: 15px;
+    }
+    .feature-video {
+        max-height: 300px;
+    }
 }
