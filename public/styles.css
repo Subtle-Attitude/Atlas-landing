@@ -129,7 +129,7 @@ body::before {
 
 header {
     text-align: center;
-    padding: 15px 5px;
+    padding: 20px 5px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
     position: relative;
     z-index: 1;
@@ -1073,8 +1073,8 @@ footer {
 .video-container {
     position: relative;
     overflow: hidden;
-    max-width: 700px; /* Slightly smaller width on desktop */
-    height: 400px; /* Slightly smaller height on desktop */
+    max-width: 600px; /* Slightly smaller width on desktop */
+    height: 340px; /* Slightly smaller height on desktop */
     margin: 0 auto;
     border-radius: 10px;
     border: 1px solid rgba(0, 255, 255, 0.3);
