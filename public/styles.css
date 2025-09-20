@@ -1061,6 +1061,7 @@ footer {
     outline: 2px solid #00f6ff;
     outline-offset: 2px;
 }
+
 /* Video Features Section */
 #video-features {
     padding: 20px 10px;
@@ -1135,5 +1136,77 @@ footer {
     .feature-video {
         height: 100%;
         object-fit: contain;
+    }
+}
+
+/* Cosmic Suggestion Section */
+.cosmic-suggestion {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px 25px;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(30, 30, 60, 0.7));
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4), inset 0 0 10px rgba(255, 0, 255, 0.2);
+    text-align: center;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #ffffff;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+    animation: sparkle 3s infinite ease-in-out; /* Reuse sparkle for attractiveness */
+    position: relative;
+    z-index: 1;
+}
+
+.cosmic-suggestion::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+    opacity: 0.3;
+    z-index: -1;
+    animation: holographic-shift 10s infinite linear; /* Reuse animation for cosmic feel */
+}
+
+.cosmic-suggestion p {
+    margin: 0;
+}
+
+/* Responsive adjustments to match existing media queries */
+@media (max-width: 900px) {
+    .cosmic-suggestion {
+        max-width: 80%;
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 600px) {
+    .cosmic-suggestion {
+        max-width: 95%;
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+}
+
+/* High contrast/forced colors support to match existing media query */
+@media (forced-colors: active) {
+    .cosmic-suggestion {
+        background: Canvas !important;
+        color: CanvasText !important;
+        border: 2px solid CanvasText !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+}
+
+@media (prefers-contrast: more) {
+    .cosmic-suggestion {
+        color: #000 !important;
+        background: #fff !important;
+        border: 2px solid #000 !important;
     }
 }

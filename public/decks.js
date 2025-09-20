@@ -689,7 +689,7 @@ function trackEvent(eventName) {
         <div class="modal-content">
           <h2>✨ Broaden your celestial horizons ✨</h2>
           <p>Are you ready to explore your internal universe? Choose your path to begin your journey within:</p>
-          <div id="google-signin-btn" class="gsi-material-button" data-analytics-event="atlas_google_signin"></div>
+          <div id="google-signin-btn" class="gsi-material-button" data Analytics-event="atlas_google_signin"></div>
           <p>or</p>
           <form id="email-form">
             <input type="email" id="email-input" placeholder="🌌 Type your email to continue the shuffle" aria-label="Email address">
@@ -1044,6 +1044,14 @@ function trackEvent(eventName) {
     artistBtn.innerHTML = '<img src="/images/artist-signature-button.png" alt="Artist Memo" />';
     artistBtn.addEventListener('click', showInfoModal);
     document.body.appendChild(artistBtn);
+
+    // Manage visibility of cosmic-suggestion
+    const suggestion = document.querySelector('.cosmic-suggestion');
+    if (suggestion && !window.app.state.hasInteracted) {
+      suggestion.style.display = 'block';
+    } else if (suggestion) {
+      suggestion.style.display = 'none';
+    }
 
     const deckCard = deckArea.querySelector('.deck-card');
     if (deckCard) {
