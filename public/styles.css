@@ -106,7 +106,51 @@ body.modal-open {
         fill: CanvasText !important;
     }
 }
+/* Opt-in Disclosure Styles */
+.opt-in-text {
+  font-size: 0.9em;
+  line-height: 1.4;
+  margin: 10px 0 15px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 6px;
+  text-align: center;
+  opacity: 0.9;
+  text-shadow: 0 0 3px rgba(0, 255, 255, 0.3);
+  animation: sparkle 3s infinite ease-in-out; /* Matches cosmic-suggestion */
+}
 
+.opt-in-text::before {
+  content: '✨ ';
+  font-size: 1em; /* Icon for visual flair, but text-based for screen readers */
+}
+
+/* Responsive & Accessibility Overrides */
+@media (max-width: 600px) {
+  .opt-in-text {
+    font-size: 0.85em;
+    padding: 8px;
+    margin: 8px 0 12px;
+  }
+}
+
+@media (forced-colors: active) {
+  .opt-in-text {
+    background: Canvas !important;
+    color: CanvasText !important;
+    border: 1px solid CanvasText !important;
+    text-shadow: none !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .opt-in-text {
+    color: #000 !important;
+    background: #fff !important;
+    border: 1px solid #000 !important;
+  }
+}
 /* Holographic overlay: Subtle iridescent gradient */
 body::before {
     content: '';

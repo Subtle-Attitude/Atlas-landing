@@ -689,10 +689,14 @@ function trackEvent(eventName) {
         <div class="modal-content">
           <h2>✨ Broaden your celestial horizons ✨</h2>
           <p>Are you ready to explore your internal universe? Choose your path to begin your journey within:</p>
-          <div id="google-signin-btn" class="gsi-material-button" data Analytics-event="atlas_google_signin"></div>
+          <!-- NEW: Opt-in Disclosure Paragraph -->
+          <p id="opt-in-disclosure" class="opt-in-text" role="note" aria-live="polite">
+            By providing your email below, you opt in to receive our monthly newsletters, weekly creative journaling exercises, and product updates. You can unsubscribe anytime via the link in any email.
+          </p>
+          <div id="google-signin-btn" class="gsi-material-button" data-analytics-event="atlas_google_signin"></div>
           <p>or</p>
-          <form id="email-form">
-            <input type="email" id="email-input" placeholder="🌌 Type your email to continue the shuffle" aria-label="Email address">
+          <form id="email-form" aria-describedby="opt-in-disclosure">
+            <input type="email" id="email-input" placeholder="🌌 Type your email to continue the shuffle" aria-label="Email address" aria-describedby="opt-in-disclosure">
             <button type="submit" data-analytics-event="atlas_email_manual_entry">Continue with Email</button>
           </form>
           <button type="button" class="close-btn" aria-label="Close modal"></button>

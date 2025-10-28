@@ -17,12 +17,15 @@
   "license": "ISC",
   "description": "Landing page for Your Atlas Journal Companion, a celestial addition for creative self-discovery",
   "dependencies": {
+    "@sendgrid/mail": "^8.1.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "google-auth-library": "^9.14.1",
     "mongodb": "^6.19.0",
-    "mongoose": "^7.0.0"
+    "mongoose": "^7.0.0",
+    "nodemailer": "^7.0.10",
+    "web-push": "^3.6.7"
   },
   "engines": {
     "node": ">=18.0.0 <23.0.0"
