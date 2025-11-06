@@ -28,7 +28,7 @@ services:
     container_name: yia-mongodb
     environment:
       - MONGO_INITDB_ROOT_USERNAME=atlas_assist
-      - MONGO_INITDB_ROOT_PASSWORD=JourneyKey127
+      - MONGO_INITDB_ROOT_PASSWORD=8epn5g2PFJrwXuSV
     volumes:
       - mongodb-data:/data/db
     networks:

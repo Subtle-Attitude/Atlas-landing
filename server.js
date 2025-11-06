@@ -15,6 +15,15 @@ app.use(cors({
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files from 'public'
 
+// Security: Block access to sensitive paths
+app.use((req, res, next) => {
+  const forbiddenPaths = ['.env', 'aws/credentials', 'server/s3.js', 'debug'];
+  if (forbiddenPaths.some(path => req.url.includes(path))) {
+    return res.status(403).send('Forbidden');
+  }
+  next();
+});
+
 // MongoDB connection
 const mongoUri = process.env.MONGODB_URI;
 if (!mongoUri) {
